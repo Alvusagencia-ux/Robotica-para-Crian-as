@@ -46,7 +46,7 @@ export const MODULES: Module[] = [
   },
   {
     name: 'Caja de Herramientas del Creador™',
-    description: 'Lo mínimo de electrónica y robótica que necesitás saber, sin curso de ingeniería.',
+    description: 'Lo mínimo de electrónica y robótica que necesitas saber, sin curso de ingeniería.',
   },
   {
     name: 'Ritual Sin Pantalla™',
@@ -71,16 +71,16 @@ export const FAQS: FaqItem[] = [
   {
     question: '¿Y si no sé nada de tecnología?',
     answer:
-      'No necesitás saber nada de electrónica ni de programación. Cada proyecto se explica paso a paso, primero en un simulador gratuito, así que podés practicar sin miedo a romper nada ni gastar un peso antes de estar seguro.',
+      'No necesitas saber nada de electrónica ni de programación. Cada proyecto se explica paso a paso, primero en un simulador gratuito, así que puedes practicar sin miedo a romper nada ni gastar un peso antes de estar seguro.',
   },
   {
     question: '¿Le va a gustar a mi hijo/a?',
     answer:
-      'Está pensado para chicos y chicas de 7 a 12 años que ya usan pantallas todos los días — la idea es canalizar esa misma curiosidad hacia crear en vez de solo consumir. Si en los primeros 7 días no logran el primer proyecto juntos, tenés el reembolso completo.',
+      'Está pensado para chicos y chicas de 7 a 12 años que ya usan pantallas todos los días — la idea es canalizar esa misma curiosidad hacia crear en vez de solo consumir. Si en los primeros 7 días no logran el primer proyecto juntos, tienes el reembolso completo.',
   },
   {
     question: '¿Funciona en mi país?',
     answer:
-      'Sí. Funciona en Argentina, Chile, Perú, Colombia, Ecuador y México — pagás en la moneda de tu país, con conversión automática en el checkout.',
+      'Sí. Funciona en Argentina, Chile, Perú, Colombia, Ecuador y México — pagas en la moneda de tu país, con conversión automática en el checkout.',
   },
 ]

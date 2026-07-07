@@ -27,7 +27,7 @@ export default function Page() {
       </p>
 
       <h2 className="mt-8 text-xl font-semibold text-slate-900">4. Contacto</h2>
-      <p className="mt-2">Para consultas sobre privacidad, escribinos a {CONTACT_EMAIL}.</p>
+      <p className="mt-2">Para consultas sobre privacidad, escríbenos a {CONTACT_EMAIL}.</p>
     </main>
   )
 }

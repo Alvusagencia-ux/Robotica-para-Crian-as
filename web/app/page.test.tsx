@@ -12,7 +12,7 @@ describe('Home page', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(/En casa pasaba lo mismo/i)).toBeInTheDocument()
     expect(screen.getByText('El Método')).toBeInTheDocument()
-    expect(screen.getByText(/Lo que llevás hoy/i)).toBeInTheDocument()
+    expect(screen.getByText(/Lo que llevas hoy/i)).toBeInTheDocument()
     expect(screen.getByText(/Garantía de 7 días/i)).toBeInTheDocument()
 
     const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
@@ -39,7 +39,7 @@ describe('Home page', () => {
       hero: text.indexOf('El método que convierte la culpa por el celular de tu hijo'),
       pain: text.indexOf('En casa pasaba lo mismo'),
       method: text.indexOf('El Método'),
-      valueStack: text.indexOf('Lo que llevás hoy'),
+      valueStack: text.indexOf('Lo que llevas hoy'),
       bonuses: text.indexOf('Bonos incluidos, gratis'),
       guarantee: text.indexOf('Garantía de 7 días'),
       faq: text.indexOf('Preguntas frecuentes'),

@@ -43,7 +43,7 @@ export default function Page() {
       </p>
 
       <h2 className="mt-8 text-xl font-semibold text-slate-900">7. Contacto</h2>
-      <p className="mt-2">{`Para consultas, escribinos a ${CONTACT_EMAIL}.`}</p>
+      <p className="mt-2">{`Para consultas, escríbenos a ${CONTACT_EMAIL}.`}</p>
     </main>
   )
 }
