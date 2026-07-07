@@ -7,7 +7,7 @@ export function FinalCta() {
         Precio de Lanzamiento
       </span>
       <p className="mt-6 text-xl text-slate-800">
-        Este es el precio especial. Cuando cerremos esta fase de lanzamiento, el precio sube.
+        Este es el precio de lanzamiento. Cuando cerremos esta fase, el precio sube.
       </p>
       <div className="mt-8">
         <CtaButton label="Quiero el Método ahora →" />
