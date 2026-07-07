@@ -6,7 +6,7 @@ export function ValueStack() {
       <h2 className="text-3xl font-bold text-slate-900">Lo que llevas hoy</h2>
       <div className="mt-8 rounded-2xl border-2 border-emerald-600 p-8">
         <p className="text-lg text-slate-700">
-          Pagás solo el producto principal —{' '}
+          Pagas solo el producto principal —{' '}
           <span className="font-bold text-emerald-700">US${PRODUCT_PRICE.toFixed(2)}</span> — y
           te llevas{' '}
           <span className="font-bold text-emerald-700">US${TOTAL_BONUS_VALUE.toFixed(2)}</span>{' '}

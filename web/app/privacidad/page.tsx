@@ -16,7 +16,7 @@ export default function Page() {
 
       <h2 className="mt-8 text-xl font-semibold text-slate-900">2. Cookies</h2>
       <p className="mt-2">
-        Podemos usar cookies de terceros (Meta Ads) para medir conversiones. Podés desactivarlas
+        Podemos usar cookies de terceros (Meta Ads) para medir conversiones. Puedes desactivarlas
         desde la configuración de tu navegador.
       </p>
 
