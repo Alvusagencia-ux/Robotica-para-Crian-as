@@ -49,7 +49,9 @@ Não é "tire seu filho da tecnologia", é "transforme o fascínio dele por tecn
 **Subtítulo:** *el Método para transformar el tiempo de pantalla de tu hijo en su primer invento*
 
 **Headline de oferta:**
-> "El método que convierte la culpa por el celular de tu hijo en el proyecto del que él más se enorgullece — sin que vos sepas nada de tecnología."
+> "El método que convierte la culpa por el celular de tu hijo en el proyecto del que él más se enorgullece — sin que tú sepas nada de tecnología."
+
+*(Registro: "tú" — español neutro, sem voseo argentino, consistente com a decisão de mirar os 6 países com uma única versão de copy.)*
 
 **Módulos (nomeados como marca, no molde Clínica Imparable):**
 
