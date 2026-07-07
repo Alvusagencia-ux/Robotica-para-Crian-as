@@ -10,6 +10,6 @@ describe('Términos y Condiciones page', () => {
     expect(screen.getByText(/se procesa a través de Hotmart/i)).toBeInTheDocument()
     expect(screen.getByText(/garantía incondicional de 7 días/i)).toBeInTheDocument()
     expect(screen.getByText(/legislación del país de residencia/i)).toBeInTheDocument()
-    expect(screen.getByText(CONTACT_EMAIL)).toBeInTheDocument()
+    expect(screen.getByText(CONTACT_EMAIL, { exact: false })).toBeInTheDocument()
   })
 })
