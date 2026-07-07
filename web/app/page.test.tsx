@@ -30,4 +30,30 @@ describe('Home page', () => {
     expect(screen.queryByText(/order bump/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/US\$3[.,]90/)).not.toBeInTheDocument()
   })
+
+  it('renders sections in the correct order', () => {
+    const { container } = render(<Page />)
+    const text = container.textContent ?? ''
+
+    const indices = {
+      hero: text.indexOf('El método que convierte la culpa por el celular de tu hijo'),
+      pain: text.indexOf('En casa pasaba lo mismo'),
+      method: text.indexOf('El Método'),
+      valueStack: text.indexOf('Lo que llevás hoy'),
+      bonuses: text.indexOf('Bonos incluidos, gratis'),
+      guarantee: text.indexOf('Garantía de 7 días'),
+      faq: text.indexOf('Preguntas frecuentes'),
+      finalCta: text.indexOf('Precio de Lanzamiento'),
+      footer: text.indexOf('Términos y Condiciones'),
+    }
+
+    Object.entries(indices).forEach(([section, index]) => {
+      expect(index, `expected to find marker text for "${section}"`).toBeGreaterThanOrEqual(0)
+    })
+
+    const ordered = Object.values(indices)
+    for (let i = 1; i < ordered.length; i++) {
+      expect(ordered[i]).toBeGreaterThan(ordered[i - 1])
+    }
+  })
 })
