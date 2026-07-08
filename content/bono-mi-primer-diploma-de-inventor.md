@@ -12,7 +12,7 @@ No hace falta organizar nada elaborado. Diez minutos alrededor de la mesa, el pr
 
 Este certificado es individual. Lleva el nombre de tu hijo o hija, reconoce su logro personal, y está pensado para guardarse, no para repartirse entre varios chicos en una fiesta. Si alguna vez organizas un cumpleaños de robótica con más niños, ese es un momento distinto, con su propio certificado de grupo; este diploma es solo para él o ella, por lo que construyó con sus propias manos.
 
-Lo que sigue es una descripción del contenido y del espíritu del diseño, pensada para la fase en que alguien arme la pieza gráfica final. No es la arte terminada. Es el mapa de qué debe decir y qué debe transmitir, para que quien lo diagrame tenga todo lo necesario.
+Lo que sigue es una descripción del contenido y del espíritu del diseño, pensada para la fase en que alguien arme la pieza gráfica final. No es el arte terminado. Es el mapa de qué debe decir y qué debe transmitir, para que quien lo diagrame tenga todo lo necesario.
 
 ### Qué debe decir el certificado
 
@@ -30,9 +30,9 @@ Lo que sigue es una descripción del contenido y del espíritu del diseño, pens
 
 ### Cómo debe sentirse el diseño
 
-El certificado debe parecerse a un diploma de verdad, no a una hoja de actividades para colorear. Piensa en el tono de un diploma universitario en miniatura, pero con calidez: bordes decorativos, quizás algún elemento visual relacionado con la robótica (un engranaje pequeño, un circuito estilizado, un ícono de bombilla encendida), y una paleta de colores que combine con el resto del material del producto.
+El certificado debe parecerse a un diploma de verdad, no a una hoja de actividades para colorear. Piensa en el tono de un diploma universitario en miniatura, pero con calidez: bordes decorativos, quizás algún elemento visual relacionado con la robótica (un engranaje pequeño, un circuito estilizado, un ícono de foco encendido), y una paleta de colores que combine con el resto del material del producto.
 
-Es importante que no se vea infantil en exceso, del estilo de una estrellita de jardín de infantes. El objetivo es que el niño lo mire y sienta que logró algo serio, algo que un adulto también respetaría. Esa seriedad, mezclada con un toque de calidez, es lo que hace que un diploma se guarde en un cajón durante años en vez de perderse en un día.
+Es importante que no se vea infantil en exceso, del estilo de una estrellita de preescolar. El objetivo es que el niño lo mire y sienta que logró algo serio, algo que un adulto también respetaría. Esa seriedad, mezclada con un toque de calidez, es lo que hace que un diploma se guarde en un cajón durante años en vez de perderse en un día.
 
 El formato final debe pensarse para imprimirse en una hoja tamaño carta u oficio, en orientación horizontal, porque así se ve más parecido a un diploma tradicional. También conviene que funcione bien en blanco y negro, para las familias que no tengan impresora a color, aunque la versión ideal use color para resaltar el nombre del niño y los elementos decorativos.
 
@@ -92,7 +92,7 @@ Después de la última pregunta, este es el momento de entregar el diploma, ya c
 
 ## Consejos para los padres: cómo conducir este momento
 
-**Elige un momento sin apuro.** No hace falta un evento especial ni una fecha marcada en el calendario. Alcanza con un rato después de la cena o un sábado por la tarde, cuando nadie tenga que salir corriendo a otra cosa. Lo que hace especial este momento no es la ocasión, es la atención completa que le dan.
+**Elige un momento sin apuro.** No hace falta un evento especial ni una fecha marcada en el calendario. Alcanza con un rato después de la cena o un sábado por la tarde, cuando nadie tenga que salir corriendo a otra cosa. Lo que hace especial este momento no es la ocasión, es la atención completa que le das.
 
 **Reúne a la audiencia que tengas, sin forzar a nadie.** Un hermano, un abuelo por videollamada, o solo tú. No hace falta un público numeroso. Lo que le importa a tu hijo o hija es que alguien lo escuche con interés real, no la cantidad de gente presente.
 
@@ -106,7 +106,7 @@ Después de la última pregunta, este es el momento de entregar el diploma, ya c
 
 **Si tu hijo o hija se pone tímido, acorta el guion.** No todas las preguntas son obligatorias. Con un niño o niña más reservado, dos o tres preguntas alcanzan, y el resto de la presentación puede ser simplemente mostrar el proyecto funcionando. La meta no es cumplir con un guion completo, es que la experiencia se sienta buena, sin presión.
 
-**Guarda el certificado en un lugar visible, al menos por unos días.** Un imán en la heladera, la puerta del cuarto o una cartelera familiar funcionan bien. Ver el propio nombre en un diploma, aunque sea por una semana, refuerza la idea de "yo hago cosas" mucho después de que termine la conversación de esa tarde.
+**Guarda el certificado en un lugar visible, al menos por unos días.** Un imán en el refrigerador, la puerta del cuarto o una cartelera familiar funcionan bien. Ver el propio nombre en un diploma, aunque sea por una semana, refuerza la idea de "yo hago cosas" mucho después de que termine la conversación de esa tarde.
 
 **Si hay más de un hijo o hija en casa, cada uno tiene su propio momento.** Evita presentaciones conjuntas donde uno quede en segundo plano. Cada niño construyó su propio proyecto y merece su propio diploma con su propio nombre, en su propio turno frente a la familia.
 
