@@ -6,7 +6,7 @@ Hay días así. Llegaste tarde, la cena todavía no está lista, o tu hijo o hij
 
 Este bono es la respuesta a esas noches. Diez mini-proyectos nuevos, ninguno repetido de los que ya armaron juntos, pensados para resolverse en el simulador en 15 minutos o menos. Mismo Tinkercad, mismas piezas que ya conocen: LEDs, un buzzer, botones, un joystick, un servo, sensores. Solo que aquí cada proyecto va directo al grano.
 
-Para eso, achicamos la receta. En el libro principal cada proyecto tiene cinco partes. Acá tiene solo tres: qué van a construir, cómo simularlo, y qué hacer si algo no sale bien. No hay lista de materiales físicos ni instrucciones para armar el circuito con las manos, porque hoy no es noche de destornillador ni de protoboard: es noche de pantalla, mouse y quince minutos. Tampoco hay una sección para "ir más lejos", porque hoy el objetivo no es profundizar, es terminar algo y poder decir "listo, lo logramos" antes de apagar la luz.
+Para eso, achicamos la receta. En el libro principal cada proyecto tiene cinco partes. Aquí tiene solo tres: qué van a construir, cómo simularlo, y qué hacer si algo no sale bien. No hay lista de materiales físicos ni instrucciones para armar el circuito con las manos, porque hoy no es noche de destornillador ni de protoboard: es noche de pantalla, mouse y quince minutos. Tampoco hay una sección para "ir más lejos", porque hoy el objetivo no es profundizar, es terminar algo y poder decir "listo, lo logramos" antes de apagar la luz.
 
 No hace falta hacerlos en orden. Abre este archivo cualquier noche apurada, elige el que más te llame la atención según el humor del día, y arma ese. Los diez están pensados para funcionar solos, sin depender de ningún otro proyecto de este bono ni del libro principal. Elige uno, ábrelo en tinkercad.com/circuits, y en un rato vas a tener algo nuevo funcionando en la pantalla.
 
@@ -20,7 +20,7 @@ Van a armar una luz de noche con un solo LED que parpadea rápido al principio y
 
 Abre tinkercad.com/circuits y crea un circuito nuevo. Trae un Arduino Uno, un LED del color que prefieran y un resistor de 220 ohmios.
 
-Conecta la pata larga del LED al resistor, y el resistor al pin 9. La pata corta del LED va al pin "GND". Es la misma conexión de siempre: nada nuevo hasta acá.
+Conecta la pata larga del LED al resistor, y el resistor al pin 9. La pata corta del LED va al pin "GND". Es la misma conexión de siempre: nada nuevo hasta aquí.
 
 Abre el panel de "Código". Esta vez la receta no se repite igual todo el tiempo, va cambiando poco a poco. Arma este primer grupo de bloques: "Encender pin" 9, "Esperar" 0,2 segundos, "Apagar pin" 9, "Esperar" 0,2 segundos. Debajo, copia ese mismo grupo tres veces más, pero cambia el número del segundo "Esperar" cada vez: 0,5 segundos en el segundo grupo, 1 segundo en el tercero, y 2 segundos en el cuarto y último grupo. Los "Encender pin" y "Apagar pin" quedan siempre iguales; lo único que cambia es cuánto dura la pausa.
 
@@ -88,7 +88,7 @@ Abre tinkercad.com/circuits y crea un circuito nuevo. Trae un Arduino Uno, un LE
 
 Conecta la pata larga del LED al resistor, y el resistor al pin 9. La pata corta va a "GND".
 
-Abre el panel de "Código". Esta receta es corta a propósito: "Encender pin" 9, "Esperar" 0,1 segundos, "Apagar pin" 9, "Esperar" 0,1 segundos. Cuatro bloques nada más. La diferencia con un semáforo o una alarma es que acá no hay ninguna condición: el LED parpadea todo el tiempo, sin que nada se lo pida, como una luz de bicicleta que queda prendida hasta que alguien la apaga.
+Abre el panel de "Código". Esta receta es corta a propósito: "Encender pin" 9, "Esperar" 0,1 segundos, "Apagar pin" 9, "Esperar" 0,1 segundos. Cuatro bloques nada más. La diferencia con un semáforo o una alarma es que aquí no hay ninguna condición: el LED parpadea todo el tiempo, sin que nada se lo pida, como una luz de bicicleta que queda prendida hasta que alguien la apaga.
 
 Aprieta "Iniciar simulación" y mira el LED titilar rápido, en un parpadeo parejo que no cambia nunca. Así se ve una luz de seguridad real cuando alguien pedalea de noche.
 
@@ -132,7 +132,7 @@ Abre tinkercad.com/circuits y crea un circuito nuevo. Trae un Arduino Uno y un m
 
 Conecta el servo al Arduino. Suele tener tres cables: uno de energía, uno de tierra y uno de señal. El de energía va a "5V", el de tierra a "GND", y el de señal al pin 9.
 
-Abre el panel de "Código". A diferencia de otros proyectos con servo, acá no hay ningún botón ni sensor: el brazo se mueve solo, sin que nadie le pida nada. Busca la acción para fijar el ángulo del servo y arma esta receta: fijar el ángulo en 0 grados, "Esperar" 0,5 segundos, fijar el ángulo en 90 grados, "Esperar" 0,5 segundos. Esos cuatro bloques van a repetirse en bucle todo el tiempo que la simulación esté corriendo.
+Abre el panel de "Código". A diferencia de otros proyectos con servo, aquí no hay ningún botón ni sensor: el brazo se mueve solo, sin que nadie le pida nada. Busca la acción para fijar el ángulo del servo y arma esta receta: fijar el ángulo en 0 grados, "Esperar" 0,5 segundos, fijar el ángulo en 90 grados, "Esperar" 0,5 segundos. Esos cuatro bloques van a repetirse en bucle todo el tiempo que la simulación esté corriendo.
 
 Aprieta "Iniciar simulación" y mira el brazo del servo: va a moverse de un lado a otro, una y otra vez, como si estuviera saludando a alguien que pasa.
 
@@ -164,27 +164,27 @@ Aprieta "Iniciar simulación" y escucha: corto, corto, largo, pausa, corto, cort
 
 **El buzzer suena sin parar, sin ninguna pausa entre patrones.** Revisa que el último bloque de "Esperar" (0,8 segundos, en silencio) esté presente antes de que la receta vuelva a repetirse. Sin esa pausa, un patrón se pega con el siguiente.
 
-## Proyecto 8: El juego de frío y caliente
+## Proyecto 8: La caja fuerte de dos manos
 
 ### Qué vas a construir
 
-Van a armar un juego de buscar un objeto escondido: un sensor mide qué tan cerca está la mano, y un buzzer avisa con pitidos más rápidos cuanto más cerca están del "tesoro".
+Van a armar una caja fuerte de juguete que solo se abre si dos personas presionan sus botones exactamente al mismo tiempo: ni antes, ni después, los dos juntos. Si alguien presiona su botón solo, sin ayuda, no pasa nada.
 
 ### Simula primero
 
-Abre tinkercad.com/circuits y crea un circuito nuevo. Trae un Arduino Uno, un sensor ultrasónico HC-SR04 y un buzzer piezoeléctrico.
+Abre tinkercad.com/circuits y crea un circuito nuevo. Trae un Arduino Uno, dos botones, un LED verde, un resistor de 220 ohmios y un buzzer piezoeléctrico.
 
-Coloca el HC-SR04 frente al Arduino. Tiene cuatro pines: VCC, Trig, Echo y GND. VCC va a "5V", GND va a "GND". Trig va al pin 7, Echo va al pin 6. Conecta el buzzer con la pata positiva al pin 8 y la negativa a "GND".
+Conecta el primer botón: una pata al pin 2, la otra a "GND". Conecta el segundo botón: una pata al pin 4, la otra también a "GND". Conecta el LED con su resistor al pin 9, y la pata corta a "GND". Conecta la pata positiva del buzzer al pin 8, y la negativa a "GND".
 
-Abre el panel de "Código". La idea del juego es "frío, tibio, caliente": lejos no suena nada, a media distancia suena lento, y muy cerca suena rápido. En bloques, lee la distancia del sensor ultrasónico usando Trig en el pin 7 y Echo en el pin 6. Después arma tres condiciones, de arriba hacia abajo: si la distancia es menor que 10 centímetros ("caliente"), "Encender pin" 8, "Esperar" 0,1 segundos, "Apagar pin" 8, "Esperar" 0,1 segundos. Si no, si la distancia es menor que 25 centímetros ("tibio"), "Encender pin" 8, "Esperar" 0,3 segundos, "Apagar pin" 8, "Esperar" 0,3 segundos. Si no ("frío"), "Apagar pin" 8, sin ningún sonido.
+Abre el panel de "Código". Esta vez la condición necesita dos partes unidas por un "y": busca el bloque lógico "y" (en algunos paneles aparece como "and") y arma un "si" que diga "si el pin 2 está presionado Y el pin 4 está presionado, entonces". Dentro de ese "entonces" pon: "Encender pin" 9, y además "Encender pin" 8, "Esperar" 0,3 segundos, "Apagar pin" 8, para el sonido de "caja abierta". Debajo, agrega un "si no" que diga simplemente "Apagar pin" 9. Ninguno de los dos botones abre nada por su cuenta: hace falta que los dos estén presionados juntos, dentro del mismo bloque "y".
 
-Aprieta "Iniciar simulación" y mueve el objeto frente al sensor, o ajusta la distancia desde el panel del componente. Cuanto más cerca, más rápido pita el buzzer. Es el mismo juego de "te estás acercando" que se juega buscando algo escondido en un cuarto.
+Aprieta "Iniciar simulación". Presiona solo el primer botón: no pasa nada. Suéltalo y presiona solo el segundo: tampoco pasa nada. Ahora mantén los dos presionados a la vez (haz clic con el mouse en uno y, sin soltarlo, haz clic también en el otro): el LED se enciende y el buzzer suena, como una caja fuerte que solo se abre con dos llaves girando al mismo tiempo.
 
 ### ¿Funcionó?
 
-**El buzzer suena siempre al mismo ritmo, sin cambiar con la distancia.** Revisa que las tres condiciones tengan números de "Esperar" distintos: 0,1 para cerca, 0,3 para media distancia. Si dejaste el mismo número en las tres, el juego pierde la gracia.
+**El LED se enciende con un solo botón presionado, sin necesitar el otro.** Revisa que dentro del "si" hayas usado el bloque "y" y no dos bloques "si" separados, uno debajo del otro. Si son dos "si" independientes, cada botón actúa solo, sin necesitar al compañero.
 
-**El buzzer no suena nunca, sin importar la distancia.** Revisa que Trig esté en el pin 7 y Echo en el pin 6, tanto en el cableado como en el bloque de lectura del sensor. Un número cambiado ahí hace que el Arduino nunca reciba una distancia válida.
+**Ninguna combinación enciende el LED, ni siquiera los dos botones juntos.** Revisa que cada botón tenga una pata en "GND" y la otra en su pin correspondiente, y que los números de pin dentro del bloque "y" (2 y 4) coincidan exactamente con los que usaste en el cableado.
 
 ## Proyecto 9: La veleta casera
 
