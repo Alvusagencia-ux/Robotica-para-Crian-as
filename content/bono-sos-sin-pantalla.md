@@ -61,7 +61,7 @@ Aquí la trampa más común es "ablandar" el límite en el último minuto. No lo
 **11. "Se cumplió el tiempo que acordamos. Ahora viene la parte buena: armar algo real."**
 Confirma el límite sin drama y enseguida ofrece el siguiente paso, para que no quede un vacío donde la negociación pueda colarse.
 
-**12. "Como quedamos, hoy hasta acá. Ven que el proyecto de esta semana te está esperando."**
+**12. "Como quedamos, hoy hasta aquí. Ven que el proyecto de esta semana te está esperando."**
 Recuerda el acuerdo previo, algo clave: el límite no lo inventas ahora, ya estaba pactado.
 
 **13. "El reloj dice que terminó. Guarda eso y ven a apretar tú el botón del circuito."**
