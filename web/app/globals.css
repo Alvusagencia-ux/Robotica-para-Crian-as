@@ -22,3 +22,89 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1deg);
+  }
+}
+
+@keyframes heroFloatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.24);
+  }
+}
+
+@keyframes heroOrbit {
+  from {
+    transform: rotate(0deg) translateX(10px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(10px) rotate(-360deg);
+  }
+}
+
+@keyframes heroPop {
+  0%,
+  100% {
+    transform: rotate(4deg) scale(1);
+  }
+  50% {
+    transform: rotate(1deg) scale(1.05);
+  }
+}
+
+.hero-bundle {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+.hero-float-soft {
+  animation: heroFloatSoft 4.8s ease-in-out infinite;
+}
+
+.hero-pulse {
+  animation: heroPulse 1.6s ease-in-out infinite;
+}
+
+.hero-orbit {
+  animation: heroOrbit 16s linear infinite;
+}
+
+.hero-orbit-reverse {
+  animation: heroOrbit 20s linear infinite reverse;
+}
+
+.hero-pop {
+  animation: heroPop 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bundle,
+  .hero-float-soft,
+  .hero-pulse,
+  .hero-orbit,
+  .hero-orbit-reverse,
+  .hero-pop {
+    animation: none;
+  }
+}

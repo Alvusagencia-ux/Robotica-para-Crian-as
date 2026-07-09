@@ -7,17 +7,16 @@ describe('Home page', () => {
   it('renders every section and both CTAs point to the same Hotmart URL', () => {
     render(<Page />)
 
-    expect(
-      screen.getByText(/El método que convierte la culpa por el celular de tu hijo/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Convierte la pantalla en su primer invento/i)).toBeInTheDocument()
     expect(screen.getByText(/En casa pasaba lo mismo/i)).toBeInTheDocument()
     expect(screen.getByText('El Método')).toBeInTheDocument()
     expect(screen.getByText(/Lo que llevas hoy/i)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Garantía de 7 días' })).toBeInTheDocument()
 
-    const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
-    expect(ctaLinks).toHaveLength(2)
-    ctaLinks.forEach((link) => expect(link).toHaveAttribute('href', HOTMART_CHECKOUT_URL))
+    const heroCta = screen.getByRole('link', { name: /Quiero empezar hoy/i })
+    const finalCta = screen.getByRole('link', { name: /Quiero el Método ahora/i })
+    expect(heroCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
+    expect(finalCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
 
     BONUSES.forEach((bonus) => expect(screen.getByText(bonus.name)).toBeInTheDocument())
     FAQS.forEach((faq) => expect(screen.getByText(faq.question)).toBeInTheDocument())
@@ -36,7 +35,7 @@ describe('Home page', () => {
     const text = container.textContent ?? ''
 
     const indices = {
-      hero: text.indexOf('El método que convierte la culpa por el celular de tu hijo'),
+      hero: text.indexOf('Convierte la pantalla en su primer invento'),
       pain: text.indexOf('En casa pasaba lo mismo'),
       method: text.indexOf('El Método'),
       valueStack: text.indexOf('Lo que llevas hoy'),
