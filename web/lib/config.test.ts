@@ -6,11 +6,12 @@ describe('config', () => {
     expect(PRODUCT_PRICE).toBe(6.90)
   })
 
-  it('defines exactly 4 bonuses, each valued at 6.90', () => {
+  it('defines exactly 4 bonuses, each valued at 6.90 with an image path', () => {
     expect(BONUSES).toHaveLength(4)
     BONUSES.forEach((bonus) => {
       expect(bonus.value).toBe(6.90)
       expect(bonus.name).toMatch(/™/)
+      expect(bonus.image).toMatch(/^\/images\/.+\.png$/)
     })
   })
 

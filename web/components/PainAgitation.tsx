@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export function PainAgitation() {
   return (
     <section className="mx-auto max-w-2xl px-6 py-16">
@@ -8,7 +10,16 @@ export function PainAgitation() {
         &ldquo;Yo tampoco soy del área&rdquo; — la tecnología suena a algo para profesores o
         ingenieros, no para alguien que ni sabía qué era un Arduino.
       </p>
-      <div className="mt-10 rounded-2xl bg-slate-50 p-8 text-slate-700">
+      <div className="mt-10 overflow-hidden rounded-2xl bg-slate-50">
+        <Image
+          src="/images/publico-alvo-1.png"
+          alt="Un padre y su hijo descubren juntos su primer circuito funcionando"
+          width={1536}
+          height={1024}
+          className="h-auto w-full"
+        />
+      </div>
+      <div className="mt-6 rounded-2xl bg-slate-50 p-8 text-slate-700">
         <p>
           En casa pasaba lo mismo: pantalla apenas había un rato libre, y cualquier intento de
           cambiar eso terminaba en pelea. La idea de &ldquo;enseñarle tecnología&rdquo; sonaba a

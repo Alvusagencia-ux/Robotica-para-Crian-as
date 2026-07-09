@@ -7,6 +7,7 @@ export interface Bonus {
   name: string
   value: number
   description: string
+  image: string
 }
 
 export const BONUSES: Bonus[] = [
@@ -14,21 +15,25 @@ export const BONUSES: Bonus[] = [
     name: 'SOS Sin Pantalla™',
     value: 6.90,
     description: '20 frases listas para cambiar pantalla por actividad, sin pelea.',
+    image: '/images/bono-sos-sin-pantalla.png',
   },
   {
     name: 'Calendario 30 Días Creador™',
     value: 6.90,
     description: 'Un desafío distinto cada día durante 30 días, sin que tengas que inventar nada.',
+    image: '/images/bono-calendario-30-dias.png',
   },
   {
     name: 'Guía Inteligente de Kits™',
     value: 6.90,
     description: 'Comparativa de kits de robótica por país, sin comisiones ocultas, para no gastar de más.',
+    image: '/images/bono-guia-kits.png',
   },
   {
     name: 'Mi Primer Diploma de Inventor™',
     value: 6.90,
     description: 'Certificado imprimible y guión para el "muestra y cuenta" en familia.',
+    image: '/images/bono-diploma-inventor.png',
   },
 ]
 

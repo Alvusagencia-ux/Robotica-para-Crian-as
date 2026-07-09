@@ -1,9 +1,17 @@
+import Image from 'next/image'
 import { PRODUCT_PRICE, TOTAL_BONUS_VALUE } from '@/lib/config'
 
 export function ValueStack() {
   return (
     <section className="mx-auto max-w-2xl px-6 py-16 text-center">
       <h2 className="text-3xl font-bold text-slate-900">Lo que llevas hoy</h2>
+      <Image
+        src="/images/mockup-bundle-completo.png"
+        alt="El producto principal De Jugador a Creador™ junto a los 4 bonos incluidos"
+        width={1254}
+        height={1254}
+        className="mx-auto mt-8 h-auto w-full max-w-md"
+      />
       <div className="mt-8 rounded-2xl border-2 border-emerald-600 p-8">
         <p className="text-lg text-slate-700">
           Pagas solo el producto principal —{' '}
