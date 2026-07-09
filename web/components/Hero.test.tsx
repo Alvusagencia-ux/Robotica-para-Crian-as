@@ -10,5 +10,10 @@ describe('Hero', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(/su primer invento/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Quiero el Método ahora/i })).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador'
+      )
+    ).toBeInTheDocument()
   })
 })

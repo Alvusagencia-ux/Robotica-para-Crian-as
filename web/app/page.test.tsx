@@ -13,7 +13,7 @@ describe('Home page', () => {
     expect(screen.getByText(/En casa pasaba lo mismo/i)).toBeInTheDocument()
     expect(screen.getByText('El Método')).toBeInTheDocument()
     expect(screen.getByText(/Lo que llevas hoy/i)).toBeInTheDocument()
-    expect(screen.getByText(/Garantía de 7 días/i)).toBeInTheDocument()
+    expect(screen.getByText(/Garantía de 7 días.*sin kit físico/i)).toBeInTheDocument()
 
     const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
     expect(ctaLinks).toHaveLength(2)
@@ -41,7 +41,7 @@ describe('Home page', () => {
       method: text.indexOf('El Método'),
       valueStack: text.indexOf('Lo que llevas hoy'),
       bonuses: text.indexOf('Bonos incluidos, gratis'),
-      guarantee: text.indexOf('Garantía de 7 días'),
+      guarantee: text.indexOf('Si en los primeros 7 días no lograste hacer el primer proyecto'),
       faq: text.indexOf('Preguntas frecuentes'),
       finalCta: text.indexOf('Precio de Lanzamiento'),
       footer: text.indexOf('Términos y Condiciones'),

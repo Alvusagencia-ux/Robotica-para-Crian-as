@@ -16,6 +16,9 @@ export function Hero() {
         <div className="mt-10">
           <CtaButton label="Quiero el Método ahora →" />
         </div>
+        <p className="mt-4 text-sm text-slate-500">
+          Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador
+        </p>
       </div>
       <Image
         src="/images/mockup-principal.png"
