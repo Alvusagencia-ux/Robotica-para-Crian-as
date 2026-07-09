@@ -25,6 +25,12 @@ describe('config', () => {
     expect(MODULES).toHaveLength(5)
   })
 
+  it('gives each module a fully expanded description (not the old one-liner)', () => {
+    const primerContacto = MODULES.find((m) => m.name === 'Primer Contacto™')
+    expect(primerContacto?.description).toContain('simulador 100% gratuito')
+    expect(primerContacto?.description).toContain('sin haber gastado ni un peso')
+  })
+
   it('defines exactly 3 FAQ items, with the país question answered without a payment-method gate', () => {
     expect(FAQS).toHaveLength(3)
     const paisFaq = FAQS.find((f) => f.question.includes('mi país'))

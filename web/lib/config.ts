@@ -47,23 +47,28 @@ export interface Module {
 export const MODULES: Module[] = [
   {
     name: 'Primer Contacto™',
-    description: 'Semana 1 en el simulador gratuito — sin gastar nada, primer logro en 20 minutos.',
+    description:
+      'Antes de gastar en cualquier kit, tú y tu hijo o hija arman su primer circuito juntos en un simulador 100% gratuito. En 20 minutos ven un LED parpadear por primera vez — la prueba de que esto va a funcionar, sin haber gastado ni un peso.',
   },
   {
     name: 'Caja de Herramientas del Creador™',
-    description: 'Lo mínimo de electrónica y robótica que necesitas saber, sin curso de ingeniería.',
+    description:
+      'Lo mínimo de electrónica y robótica que necesitas saber, explicado con analogías cotidianas — nunca con jerga técnica. No es un curso de ingeniería: es justo lo necesario para acompañar, ni una palabra más.',
   },
   {
     name: 'Ritual Sin Pantalla™',
-    description: 'Sesiones de 30 a 45 minutos con calendario listo — reemplaza tiempo de pantalla sin que tengas que inventar nada.',
+    description:
+      'El sistema de sesiones de 30 a 45 minutos que reemplaza el tiempo de pantalla sin que tengas que inventar nada cada semana. Incluye el calendario semanal listo para empezar — diseñado para que el cambio ocurra solo, sin peleas y sin improvisación.',
   },
   {
     name: 'Proyectos Manos a la Obra™',
-    description: '8 proyectos guiados paso a paso, del más fácil al más desafiante.',
+    description:
+      '8 proyectos guiados paso a paso, del más fácil al más desafiante, cada uno con su propia estructura clara: qué vas a construir, cómo simularlo, y qué hacer si algo no funciona a la primera.',
   },
   {
     name: 'Vitrina Familiar™',
-    description: 'Cómo documentar y celebrar lo que tu hijo/a creó.',
+    description:
+      'Cómo documentar y celebrar lo que tu hijo o hija creó — la foto, el video, y el mensaje que convierte un circuito en un recuerdo del que van a hablar durante semanas.',
   },
 ]
 
