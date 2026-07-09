@@ -743,7 +743,7 @@ describe('Home page', () => {
       screen.getByText('Muy pronto: las historias de las primeras familias')
     ).toBeInTheDocument()
     expect(screen.getByText('Tal vez estás pensando...')).toBeInTheDocument()
-    expect(screen.getByText(/Garantía de 7 días/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Garantía de 7 días' })).toBeInTheDocument()
 
     const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
     expect(ctaLinks).toHaveLength(2)
@@ -775,7 +775,7 @@ describe('Home page', () => {
       bonuses: text.indexOf('Bonos incluidos, gratis'),
       provaSocial: text.indexOf('Muy pronto'),
       faq: text.indexOf('Tal vez estás pensando'),
-      guarantee: text.indexOf('Garantía de 7 días'),
+      guarantee: text.indexOf('Si en los primeros 7 días no lograste hacer el primer proyecto'),
       finalCta: text.indexOf('Precio de Lanzamiento'),
       footer: text.indexOf('Términos y Condiciones'),
     }
@@ -793,6 +793,8 @@ describe('Home page', () => {
 ```
 
 Note: the `BONUSES.forEach` assertion in the first test changes from `getByText` to `getAllByText(...).length > 0` — with Task 4's `FinalCta` checklist now also rendering every `bonus.name` (as `✅ Bono: <name>`), each bonus name appears twice on the page (once in `Bonuses.tsx`, once in `FinalCta.tsx`'s checklist line), so a single-match `getByText` would throw.
+
+Note: the Guarantee assertions are disambiguated from the Hero's trust line (Task 2 added "Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador" below the Hero CTA), which also contains the substring "Garantía de 7 días". The first test now targets the Guarantee section's `<h2>` specifically via `getByRole('heading', ...)` instead of `getByText`, and the order-test marker uses the Guarantee section's body copy ("Si en los primeros 7 días no lograste hacer el primer proyecto", from `Guarantee.tsx`) instead of the now-ambiguous heading text.
 
 - [ ] **Step 2: Run test to verify it fails**
 
