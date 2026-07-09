@@ -16,11 +16,11 @@ Este documento resolve os pontos onde o modelo de referência **conflita** com d
 
 | # | Seção | Situação | Componente |
 |---|---|---|---|
-| 1 | Hero | Existente, ajuste menor (linha de confiança) | `Hero.tsx` |
+| 1 | Hero | Existente, ajuste menor de copy — adicionar **linha de confiança** abaixo do CTA: *"Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador"* | `Hero.tsx` |
 | 2 | Problema aprofundado | **Nova** | `Problema.tsx` |
 | 3 | História pessoal (founder story) | Existente, reposicionada | `PainAgitation.tsx` |
 | 4 | Qué es + Para quién es | **Nova** (mescla definição + 3 cards de dor + qualificação) | `ParaQuienEs.tsx` |
-| 5 | O Método | Existente, descrições expandidas | `Method.tsx` + `lib/config.ts` |
+| 5 | O Método | Existente, descrições expandidas | `Method.tsx` *(componente que renderiza — sem edição de código)* + `lib/config.ts` *(arquivo a editar — novas descrições)* |
 | 6 | O que você leva hoje | Existente, sem mudança de regra | `ValueStack.tsx` |
 | 7 | Bônus | Existente | `Bonuses.tsx` |
 | 8 | Prova social (placeholder) | **Nova** | `ProvaSocial.tsx` |
@@ -72,9 +72,9 @@ manos, sin que tú tengas que saber nada de tecnología.
 
 | Ícone | Título | Frase |
 |---|---|---|
-| Tela/culpa | El padre que siente culpa por la pantalla | "Sabes que hay demasiada pantalla, pero cada intento de cambiarlo termina en pelea." |
-| Interrogação | El padre que "no es de tecnología" | "Nunca tocaste un Arduino y no sabrías por dónde empezar, aunque quisieras." |
-| Relógio | El padre sin tiempo de sobra | "Entre trabajo y rutina, cualquier actividad nueva parece un proyecto de fin de semana entero." |
+| Tela/culpa | El papá o la mamá que siente culpa por la pantalla | "Sabes que hay demasiada pantalla, pero cada intento de cambiarlo termina en pelea." |
+| Interrogação | El papá o la mamá que "no es de tecnología" | "Nunca tocaste un Arduino y no sabrías por dónde empezar, aunque quisieras." |
+| Relógio | El papá o la mamá sin tiempo de sobra | "Entre trabajo y rutina, cualquier actividad nueva parece un proyecto de fin de semana entero." |
 
 **Es para ti si:**
 - Quieres reemplazar tiempo de pantalla sin pelear cada día
@@ -108,7 +108,8 @@ ingeniería: es justo lo necesario para acompañar, ni una palabra más.
 Ritual Sin Pantalla™:
 El sistema de sesiones de 30 a 45 minutos que reemplaza el tiempo de
 pantalla sin que tengas que inventar nada cada semana. Incluye el
-calendario y las frases exactas para proponerlo sin pelea.
+calendario semanal listo para empezar — diseñado para que el cambio
+ocurra solo, sin peleas y sin improvisación.
 
 Proyectos Manos a la Obra™:
 8 proyectos guiados paso a paso, del más fácil al más desafiante, cada uno
@@ -121,7 +122,7 @@ y el mensaje que convierte un circuito en un recuerdo del que van a hablar
 durante semanas.
 ```
 
-**Nota técnica:** `Method.test.tsx` e `app/page.test.tsx` leem `MODULES` dinamicamente do config — atualizar as descrições no config já propaga pros testes sem precisar editá-los.
+**Nota técnica:** `Method.test.tsx` lê `MODULES` dinamicamente do config via `getByText(mod.description)` — atualizar as descrições no config propaga para o teste **somente se `Method.tsx` renderizar o texto completo da descrição**. Se `Method.tsx` aplicar truncamento, text-clamp ou excerpt para layout de card, `Method.test.tsx` falhará com "element not found" e precisará ser atualizado manualmente.
 
 ## 7. Conteúdo — Seção 8: Prova social (placeholder honesto)
 
@@ -136,6 +137,8 @@ historia puede estar aquí.
 ## 8. Conteúdo — Seção 9: FAQ reposicionada
 
 Sem mudança nas 3 perguntas já travadas em `FAQS` (lib/config.ts). Só o cabeçalho da seção muda de "Preguntas frecuentes" para "Tal vez estás pensando...".
+
+**Atualização obrigatória em `app/page.test.tsx`:** o marker de ordem atual usa `text.indexOf('Preguntas frecuentes')` para a seção FAQ. Após a renomeação, esse índex retorna -1 e quebra o teste de ordem com CI failure garantido. Substituir por `text.indexOf('Tal vez estás pensando')`.
 
 ## 9. Conteúdo — Seção 11: CTA final expandido
 
@@ -154,7 +157,9 @@ gratis.
 [Badge] Precio de Lanzamiento — Cuando cerremos esta fase, el precio sube.
 ```
 
-O checklist (5 módulos + 4 bônus) é gerado a partir de `MODULES` e `BONUSES` já existentes no config — não duplicar essas listas em texto fixo no componente.
+O checklist é gerado a partir de `MODULES` e `BONUSES` do config da seguinte forma (não duplicar em texto fixo):
+- **1 linha agregada de módulos:** renderizar `✅ Producto principal — {MODULES.length} módulos completos` usando o `.length` do array — **não** iterar `MODULES` individualmente (evita 5 linhas separadas que não correspondem ao visual aprovado)
+- **4 linhas de bônus individuais:** iterar `BONUSES` e usar **`bonus.name`** como label, prefixando com `✅ Bono: ` (ex: `✅ Bono: SOS Sin Pantalla™`) — não usar `bonus.description` nem `bonus.value`
 
 ## 10. Componentes técnicos afetados
 
@@ -168,13 +173,17 @@ O checklist (5 módulos + 4 bônus) é gerado a partir de `MODULES` e `BONUSES` 
 - `components/Faq.tsx` — cabeçalho renomeado
 - `components/FinalCta.tsx` — checklist completo adicionado (consumindo `MODULES`/`BONUSES`)
 - `app/page.tsx` — nova ordem de composição (12 seções)
-- `app/page.test.tsx` — teste de ordem (`container.textContent` + índices) precisa incluir os novos marcadores de seção
+- `app/page.test.tsx` — teste de ordem (`container.textContent` + índices) precisa:
+  - Substituir marker `'Preguntas frecuentes'` → `'Tal vez estás pensando'` (FAQ renomeada)
+  - Adicionar markers para as 3 novas seções: `'problema'` → `'El problema no siempre'`; `'paraQuienEs'` → `'¿Qué es De Jugador'`; `'provaSocial'` → `'Muy pronto'`
+
+**Modificados (cont.):**
+- `components/Hero.tsx` — copy-only: adicionar linha de confiança abaixo do CTA (ver item 1 da tabela de estrutura de seções, Seção 2 deste doc)
 
 **Sem mudança:**
-- `Hero.tsx` (só ajuste de copy, sem mudança estrutural)
 - `PainAgitation.tsx`, `Method.tsx`, `ValueStack.tsx`, `Bonuses.tsx`, `Guarantee.tsx`, `Footer.tsx`, `CtaButton.tsx`
 
 ## 11. Próximos passos
 
-- Escrever plano de implementação técnica (writing-plans) cobrindo os 3 componentes novos, as 2 edições de config/componente existente, e a recomposição de `app/page.tsx` com teste de ordem atualizado
+- Escrever plano de implementação técnica (writing-plans) cobrindo: 3 componentes novos (`Problema`, `ParaQuienEs`, `ProvaSocial`); 6 arquivos modificados (`lib/config.ts`, `Faq.tsx`, `FinalCta.tsx`, `app/page.tsx`, `app/page.test.tsx`, `Hero.tsx`); e a lógica de checklist agregado em `FinalCta.tsx`
 - Nenhum novo asset de imagem necessário — os cards da seção "Para quién es" usam ícones (SVG/inline), não fotos
