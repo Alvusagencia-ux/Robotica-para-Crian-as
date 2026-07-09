@@ -13,7 +13,7 @@ describe('Home page', () => {
     expect(screen.getByText(/En casa pasaba lo mismo/i)).toBeInTheDocument()
     expect(screen.getByText('El Método')).toBeInTheDocument()
     expect(screen.getByText(/Lo que llevas hoy/i)).toBeInTheDocument()
-    expect(screen.getByText(/Garantía de 7 días.*sin kit físico/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Garantía de 7 días' })).toBeInTheDocument()
 
     const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
     expect(ctaLinks).toHaveLength(2)
