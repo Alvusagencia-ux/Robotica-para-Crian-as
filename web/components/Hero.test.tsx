@@ -6,7 +6,8 @@ describe('Hero', () => {
   it('renders the headline, subheadline, and a CTA', () => {
     render(<Hero />)
     expect(screen.getByText(/Convierte la pantalla en su primer invento/i)).toBeInTheDocument()
-    expect(screen.getByText(/pase de mirar videos a construir proyectos/i)).toBeInTheDocument()
+    expect(screen.getByText(/Abre el simulador gratuito/i)).toBeInTheDocument()
+    expect(screen.getByText(/En 20 minutos puede decir/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Quiero empezar hoy/i })).toBeInTheDocument()
     expect(
       screen.getByText(
