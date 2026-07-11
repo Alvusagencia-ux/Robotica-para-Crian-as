@@ -5,7 +5,7 @@ export function Guarantee() {
     <section className="bg-[#063B35] px-5 py-16 text-center text-[#F6F1E7]">
       <div className="mx-auto max-w-2xl rounded-[2rem] border border-[#E8A33D]/35 bg-[#0A4B43] p-8 shadow-[0_24px_48px_rgba(0,0,0,0.18)]">
         <Image
-          src="/images/garantia-7-dias.png"
+          src="/images/Garantia.png"
           alt="Sello de garantía de 7 días"
           width={348}
           height={346}
