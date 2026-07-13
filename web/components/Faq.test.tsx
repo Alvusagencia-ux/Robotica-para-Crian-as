@@ -20,4 +20,9 @@ describe('Faq', () => {
     await user.click(screen.getByText(firstQuestion.question))
     expect(screen.getByText(firstQuestion.answer)).toBeInTheDocument()
   })
+
+  it('renders the "Tal vez estás pensando..." heading', () => {
+    render(<Faq />)
+    expect(screen.getByText('Tal vez estás pensando...')).toBeInTheDocument()
+  })
 })

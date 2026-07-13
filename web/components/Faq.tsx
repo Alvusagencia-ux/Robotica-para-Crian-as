@@ -9,7 +9,9 @@ export function Faq() {
   return (
     <section className="bg-[#F6F1E7] px-5 py-16 text-[#17342F]">
       <div className="mx-auto max-w-2xl">
-        <h2 className="text-center text-4xl font-black leading-tight">Preguntas frecuentes</h2>
+        <h2 className="text-center text-4xl font-black leading-tight">
+          Tal vez estás pensando...
+        </h2>
         <div className="mt-10 space-y-4">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index
