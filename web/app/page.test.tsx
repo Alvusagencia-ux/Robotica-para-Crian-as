@@ -8,9 +8,17 @@ describe('Home page', () => {
     render(<Page />)
 
     expect(screen.getByText(/Convierte la pantalla en su primer invento/i)).toBeInTheDocument()
+    expect(
+      screen.getByText('¿Por qué a algunos padres les funciona y a otros no?')
+    ).toBeInTheDocument()
     expect(screen.getByText(/En casa pasaba lo mismo/i)).toBeInTheDocument()
+    expect(screen.getByText('¿Qué es De Jugador a Creador™?')).toBeInTheDocument()
     expect(screen.getByText('El Método')).toBeInTheDocument()
     expect(screen.getByText(/Lo que llevas hoy/i)).toBeInTheDocument()
+    expect(
+      screen.getByText('Muy pronto: las historias de las primeras familias')
+    ).toBeInTheDocument()
+    expect(screen.getByText('Tal vez estás pensando...')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Garantía de 7 días' })).toBeInTheDocument()
 
     const heroCta = screen.getByRole('link', { name: /Quiero empezar hoy/i })
@@ -18,7 +26,7 @@ describe('Home page', () => {
     expect(heroCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
     expect(finalCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
 
-    BONUSES.forEach((bonus) => expect(screen.getByText(bonus.name)).toBeInTheDocument())
+    BONUSES.forEach((bonus) => expect(screen.getAllByText(bonus.name).length).toBeGreaterThan(0))
     FAQS.forEach((faq) => expect(screen.getByText(faq.question)).toBeInTheDocument())
 
     expect(screen.getByRole('link', { name: /Términos y Condiciones/i })).toBeInTheDocument()
@@ -36,12 +44,15 @@ describe('Home page', () => {
 
     const indices = {
       hero: text.indexOf('Convierte la pantalla en su primer invento'),
+      problema: text.indexOf('El problema no siempre'),
       pain: text.indexOf('En casa pasaba lo mismo'),
+      paraQuienEs: text.indexOf('¿Qué es De Jugador'),
       method: text.indexOf('El Método'),
       valueStack: text.indexOf('Lo que llevas hoy'),
       bonuses: text.indexOf('Bonos incluidos, gratis'),
+      provaSocial: text.indexOf('Muy pronto'),
+      faq: text.indexOf('Tal vez estás pensando'),
       guarantee: text.indexOf('Si en los primeros 7 días no lograste hacer el primer proyecto'),
-      faq: text.indexOf('Preguntas frecuentes'),
       finalCta: text.indexOf('Precio de Lanzamiento'),
       footer: text.indexOf('Términos y Condiciones'),
     }
