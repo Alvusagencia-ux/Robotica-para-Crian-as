@@ -47,6 +47,29 @@ No changes to `PainAgitation.tsx`, `Method.tsx`, `ValueStack.tsx`, `Bonuses.tsx`
 
 ---
 
+## Mid-Execution Amendment (2026-07-13)
+
+Tasks 1 and 2 were executed and committed on 2026-07-09 through this plan's subagent-driven-development process. Between then and 2026-07-13, **7 additional commits landed on this same branch outside this process** (external work, likely via Codex CLI) that replaced the entire visual system of the existing 9 sections with a new dark-teal/cream/amber design language, redesigned the Hero's first fold, and fixed image assets. None of Tasks 3-8 had been executed by that work — the page is still 9 sections, FAQ still says "Preguntas frecuentes", and no `Problema`/`ParaQuienEs`/`ProvaSocial` components exist. `main` is untouched; all of this is confined to the `landing-page-remodel` branch.
+
+Tasks 3-8 below are **rewritten in place** (superseding the original drafts) to build the same locked spec content on top of the new visual system rather than the original slate/emerald Tailwind classes. The user confirmed: keep the new visual system, continue the 12-section structural plan on top of it.
+
+**New design tokens (from the external work — match these in every new/modified section):**
+- Dark section: `bg-[#063B35] text-[#F6F1E7]` (used by Hero, PainAgitation, ValueStack, Guarantee, FinalCta, Footer)
+- Light section: `bg-[#F6F1E7] text-[#17342F]` (used by Method, Bonuses, Faq)
+- Accent (CTA, badges, numbered circles, eyebrow-on-dark): `#E8A33D`
+- Eyebrow-on-light text: `#1F6F5C`; body text on light: `#405650`
+- Headings: `font-black leading-tight`, typically `text-4xl` (section h2) — never `font-bold`/`text-3xl` (the old system)
+- Card-on-dark (e.g. `Guarantee.tsx`, `ValueStack.tsx`'s price box): `rounded-[2rem]` or `rounded-[1.75rem]`, `border border-[#E8A33D]/35`, `bg-[#0A4B43]`, `shadow-[0_24px_48px_rgba(0,0,0,0.18)]`
+- Card-on-light (e.g. `Bonuses.tsx`, `Method.tsx` module cards): `rounded-[1.5rem]`, `border border-[#1F6F5C]/16`, `bg-white/74`, `shadow-[0_16px_32px_rgba(31,111,92,0.08)]`
+
+**Section color rhythm for the 3 new sections** (a judgment call, since Method/ValueStack/Bonuses/Guarantee/FinalCta/Footer's colors are already fixed by the external work and don't strictly alternate): `Problema` = dark (continues the Hero→Problema→PainAgitation emotional arc), `ParaQuienEs` = light (informational qualification section, breather before Method's light "how it works"), `ProvaSocial` = dark (avoids 3 light sections in a row between `Bonuses` and `Faq`).
+
+**Two things the external work changed that affect later tasks:**
+1. **Hero's CTA label is now different from FinalCta's.** Hero uses `"Quiero empezar hoy →"`; FinalCta still uses `"Quiero el Método ahora →"`. Task 8's page-level test can no longer assert "2 links with the same name" — it must query each CTA by its own label.
+2. **The Hero/Guarantee "Garantía de 7 días" text collision** (found during Task 2's review) is already fixed in the current `web/app/page.test.tsx` — the Guarantee assertions use `getByRole('heading', ...)` and the order-test marker `'Si en los primeros 7 días no lograste hacer el primer proyecto'`. Task 8's rewrite below preserves this fix.
+
+---
+
 ### Task 1: Expand module descriptions in config
 
 **Files:**
@@ -186,7 +209,7 @@ git commit -m "feat: add trust line below Hero CTA"
 ### Task 3: Rename FAQ heading
 
 **Files:**
-- Modify: `web/components/Faq.tsx:11`
+- Modify: `web/components/Faq.tsx` (the `<h2>` line)
 - Modify: `web/components/Faq.test.tsx`
 
 **Interfaces:**
@@ -211,16 +234,16 @@ Expected: FAIL — text not found (current heading is "Preguntas frecuentes").
 
 - [ ] **Step 3: Rename the heading**
 
-In `web/components/Faq.tsx:11`, replace:
+In `web/components/Faq.tsx`, replace:
 
 ```tsx
-        <h2 className="text-center text-3xl font-bold text-slate-900">Preguntas frecuentes</h2>
+        <h2 className="text-center text-4xl font-black leading-tight">Preguntas frecuentes</h2>
 ```
 
 with:
 
 ```tsx
-        <h2 className="text-center text-3xl font-bold text-slate-900">
+        <h2 className="text-center text-4xl font-black leading-tight">
           Tal vez estás pensando...
         </h2>
 ```
@@ -286,7 +309,7 @@ describe('FinalCta', () => {
 })
 ```
 
-This fully replaces the current file (it only adds the `MODULES`/`BONUSES` import and the second test — the first test and its imports are unchanged).
+This adds the `MODULES`/`BONUSES` import and the second test to the CURRENT file (which already has the first test, unmodified from the original 9-section page — verify it still matches what's in `web/components/FinalCta.test.tsx` before editing; if it has drifted further, ask before proceeding).
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -295,7 +318,7 @@ Expected: FAIL — checklist heading and lines not found (current component has 
 
 - [ ] **Step 3: Add the checklist**
 
-Replace the full contents of `web/components/FinalCta.tsx` with:
+The current `web/components/FinalCta.tsx` (as of the external redesign) has an image, a "Precio de Lanzamiento" badge, a headline, a supporting paragraph, and a CTA — but no checklist, and its headline doesn't match the spec-locked text. Replace the full contents of `web/components/FinalCta.tsx` with:
 
 ```tsx
 import Image from 'next/image'
@@ -304,39 +327,42 @@ import { BONUSES, MODULES } from '@/lib/config'
 
 export function FinalCta() {
   return (
-    <section className="mx-auto max-w-2xl px-6 py-20 text-center">
-      <Image
-        src="/images/publico-alvo-2.png"
-        alt="Un niño sostiene con orgullo el circuito que acaba de crear"
-        width={1024}
-        height={1536}
-        className="mx-auto h-64 w-auto rounded-2xl object-cover"
-      />
-      <h2 className="mt-10 text-3xl font-bold text-slate-900">¡Llévate TODO esto hoy!</h2>
-      <ul className="mx-auto mt-6 max-w-md space-y-2 text-left text-lg text-slate-700">
-        <li>
-          ✅ Producto principal — {MODULES.length} módulos completos
-        </li>
-        {BONUSES.map((bonus) => (
-          <li key={bonus.name}>✅ Bono: {bonus.name}</li>
-        ))}
-      </ul>
-      <p className="mt-8 text-xl text-slate-800">
-        Pagas solo el producto principal (US$6,90) y te llevas US$27,60 en bonos, gratis.
-      </p>
-      <span className="mt-8 inline-block rounded-full bg-amber-100 px-4 py-1 text-sm font-semibold text-amber-800">
-        Precio de Lanzamiento
-      </span>
-      <p className="mt-6 text-xl text-slate-800">
-        Este es el precio de lanzamiento. Cuando cerremos esta fase, el precio sube.
-      </p>
-      <div className="mt-8">
-        <CtaButton label="Quiero el Método ahora →" />
+    <section className="bg-[#063B35] px-5 py-20 text-center text-[#F6F1E7]">
+      <div className="mx-auto max-w-3xl">
+        <Image
+          src="/images/publico-alvo-2.png"
+          alt="Un niño sostiene con orgullo el circuito que acaba de crear"
+          width={1024}
+          height={1536}
+          className="mx-auto h-72 w-auto rounded-[2rem] object-cover shadow-[0_22px_44px_rgba(0,0,0,0.24)]"
+        />
+        <span className="mt-8 inline-block rounded-full bg-[#E8A33D] px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-[#063B35]">
+          Precio de Lanzamiento
+        </span>
+        <h2 className="mt-5 text-4xl font-black leading-tight">¡Llévate TODO esto hoy!</h2>
+        <p className="mx-auto mt-5 max-w-2xl text-xl leading-8 text-[#F6F1E7]/84">
+          Empieza hoy con el simulador gratuito, guía a tu hijo paso a paso y vivan juntos ese
+          primer &ldquo;¡funcionó!&rdquo;. Cuando cerremos esta fase, el precio sube.
+        </p>
+        <ul className="mx-auto mt-8 max-w-md space-y-2 rounded-[1.75rem] border border-[#E8A33D]/35 bg-[#0A4B43] p-6 text-left text-lg text-[#F6F1E7] shadow-[0_24px_48px_rgba(0,0,0,0.18)]">
+          <li>✅ Producto principal — {MODULES.length} módulos completos</li>
+          {BONUSES.map((bonus) => (
+            <li key={bonus.name}>✅ Bono: {bonus.name}</li>
+          ))}
+        </ul>
+        <p className="mt-6 text-xl font-black text-[#F6F1E7]">
+          Pagas solo el producto principal (US$6,90) y te llevas US$27,60 en bonos, gratis.
+        </p>
+        <div className="mt-8">
+          <CtaButton label="Quiero el Método ahora →" />
+        </div>
       </div>
     </section>
   )
 }
 ```
+
+Note: this replaces the redesign's headline "Que la próxima pantalla termine en un invento." with the spec-locked "¡Llévate TODO esto hoy!" (a Global Constraint — locked copy), but keeps the redesign's supporting paragraph, image, badge, and all new visual classes (`#063B35`/`#F6F1E7`/`#E8A33D` palette, `rounded-[...]`, `shadow-[...]`). The kept paragraph still contains "el precio sube", so the existing first test in `FinalCta.test.tsx` continues to pass unmodified.
 
 - [ ] **Step 4: Run test to verify it passes**
 
@@ -390,31 +416,33 @@ Expected: FAIL — `Cannot find module './Problema'` (file doesn't exist yet).
 
 - [ ] **Step 3: Create the component**
 
-Create `web/components/Problema.tsx`:
+Create `web/components/Problema.tsx`, matching the dark-section pattern established by `PainAgitation.tsx` (`bg-[#063B35] text-[#F6F1E7]`, `font-black` headings — see the Mid-Execution Amendment above for the full token list):
 
 ```tsx
 export function Problema() {
   return (
-    <section className="mx-auto max-w-2xl px-6 py-16">
-      <h2 className="text-center text-3xl font-bold text-slate-900">
-        ¿Por qué a algunos padres les funciona y a otros no?
-      </h2>
-      <div className="mt-6 space-y-4 text-lg text-slate-600">
-        <p>
-          El problema no siempre es la falta de tiempo. Tampoco es solo el trabajo, el cansancio
-          o que tu hijo prefiera la pantalla. Muchas familias no logran cambiar el hábito de
-          pantalla porque no tienen un sistema que conecte el momento correcto, la actividad
-          correcta y la confianza para guiarla — sin ser expertos.
-        </p>
-        <p>
-          Sin ese sistema, compras un curso, bajas una app, prometes &ldquo;este fin de semana lo
-          hacemos&rdquo;... pero la pantalla vuelve a ganar, porque no hay un ritual claro que
-          sostenga el cambio.
-        </p>
-        <p>
-          De Jugador a Creador™ fue creado para darte ese sistema: no una regla más para pelear,
-          sino un ritual que tu hijo va a pedir.
-        </p>
+    <section className="bg-[#063B35] px-5 py-16 text-[#F6F1E7]">
+      <div className="mx-auto max-w-3xl">
+        <h2 className="text-center text-4xl font-black leading-tight">
+          ¿Por qué a algunos padres les funciona y a otros no?
+        </h2>
+        <div className="mt-6 space-y-4 text-lg leading-8 text-[#F6F1E7]/84">
+          <p>
+            El problema no siempre es la falta de tiempo. Tampoco es solo el trabajo, el
+            cansancio o que tu hijo prefiera la pantalla. Muchas familias no logran cambiar el
+            hábito de pantalla porque no tienen un sistema que conecte el momento correcto, la
+            actividad correcta y la confianza para guiarla — sin ser expertos.
+          </p>
+          <p>
+            Sin ese sistema, compras un curso, bajas una app, prometes &ldquo;este fin de semana
+            lo hacemos&rdquo;... pero la pantalla vuelve a ganar, porque no hay un ritual claro
+            que sostenga el cambio.
+          </p>
+          <p>
+            De Jugador a Creador™ fue creado para darte ese sistema: no una regla más para
+            pelear, sino un ritual que tu hijo va a pedir.
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -489,7 +517,7 @@ Expected: FAIL — `Cannot find module './ParaQuienEs'`.
 
 - [ ] **Step 3: Create the component**
 
-Create `web/components/ParaQuienEs.tsx`:
+Create `web/components/ParaQuienEs.tsx`, matching the light-section pattern established by `Bonuses.tsx`/`Method.tsx` (`bg-[#F6F1E7] text-[#17342F]`, eyebrow + `font-black` heading, `rounded-[1.5rem] border border-[#1F6F5C]/16 bg-white/74` cards — see the Mid-Execution Amendment above for the full token list):
 
 ```tsx
 const CARDS = [
@@ -502,7 +530,7 @@ const CARDS = [
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="mx-auto h-8 w-8 text-emerald-600"
+        className="mx-auto h-8 w-8 text-[#1F6F5C]"
         aria-hidden="true"
       >
         <rect x="3" y="4" width="18" height="12" rx="1.5" />
@@ -519,7 +547,7 @@ const CARDS = [
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="mx-auto h-8 w-8 text-emerald-600"
+        className="mx-auto h-8 w-8 text-[#1F6F5C]"
         aria-hidden="true"
       >
         <circle cx="12" cy="12" r="9" />
@@ -542,7 +570,7 @@ const CARDS = [
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="mx-auto h-8 w-8 text-emerald-600"
+        className="mx-auto h-8 w-8 text-[#1F6F5C]"
         aria-hidden="true"
       >
         <circle cx="12" cy="12" r="9" />
@@ -569,48 +597,58 @@ const NO_ES_PARA_TI = [
 
 export function ParaQuienEs() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-16">
-      <h2 className="text-center text-3xl font-bold text-slate-900">
-        ¿Qué es De Jugador a Creador™?
-      </h2>
-      <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-slate-600">
-        Es el método completo — con el ritual, los proyectos y las herramientas — para que tu
-        hijo o hija pase de consumir pantalla a crear con sus propias manos, sin que tú tengas
-        que saber nada de tecnología.
-      </p>
+    <section className="bg-[#F6F1E7] px-5 py-16 text-[#17342F]">
+      <div className="mx-auto max-w-4xl">
+        <p className="text-center text-sm font-black uppercase tracking-[0.18em] text-[#1F6F5C]">
+          Antes de seguir
+        </p>
+        <h2 className="mt-3 text-center text-4xl font-black leading-tight">
+          ¿Qué es De Jugador a Creador™?
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-8 text-[#405650]">
+          Es el método completo — con el ritual, los proyectos y las herramientas — para que tu
+          hijo o hija pase de consumir pantalla a crear con sus propias manos, sin que tú tengas
+          que saber nada de tecnología.
+        </p>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-3">
-        {CARDS.map((card) => (
-          <div key={card.title} className="rounded-xl border border-slate-200 p-6 text-center">
-            {card.icon}
-            <h3 className="mt-4 text-base font-semibold text-slate-900">{card.title}</h3>
-            <p className="mt-2 text-sm text-slate-600">{card.quote}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-12 grid gap-8 sm:grid-cols-2">
-        <div>
-          <h3 className="text-lg font-semibold text-slate-900">Es para ti si:</h3>
-          <ul className="mt-4 space-y-2 text-slate-600">
-            {ES_PARA_TI.map((item) => (
-              <li key={item} className="flex gap-2">
-                <span className="text-emerald-600">✓</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          {CARDS.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-[1.5rem] border border-[#1F6F5C]/16 bg-white/74 p-6 text-center shadow-[0_16px_32px_rgba(31,111,92,0.08)]"
+            >
+              {card.icon}
+              <h3 className="mt-4 text-base font-black leading-tight text-[#063B35]">
+                {card.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-[#405650]">{card.quote}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <h3 className="text-lg font-semibold text-slate-900">No es para ti si:</h3>
-          <ul className="mt-4 space-y-2 text-slate-600">
-            {NO_ES_PARA_TI.map((item) => (
-              <li key={item} className="flex gap-2">
-                <span className="text-slate-400">✕</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="rounded-[1.5rem] border border-[#1F6F5C]/16 bg-white/74 p-6 shadow-[0_16px_32px_rgba(31,111,92,0.08)]">
+            <h3 className="text-lg font-black text-[#063B35]">Es para ti si:</h3>
+            <ul className="mt-4 space-y-2 text-[#405650]">
+              {ES_PARA_TI.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="text-[#1F6F5C]">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-[1.5rem] border border-[#1F6F5C]/16 bg-white/74 p-6 shadow-[0_16px_32px_rgba(31,111,92,0.08)]">
+            <h3 className="text-lg font-black text-[#063B35]">No es para ti si:</h3>
+            <ul className="mt-4 space-y-2 text-[#405650]">
+              {NO_ES_PARA_TI.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="text-[#405650]/50">✕</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -671,19 +709,22 @@ Expected: FAIL — `Cannot find module './ProvaSocial'`.
 
 - [ ] **Step 3: Create the component**
 
-Create `web/components/ProvaSocial.tsx`:
+Create `web/components/ProvaSocial.tsx`, matching the dark card-in-section pattern established by `Guarantee.tsx` (`bg-[#063B35]` section wrapping a `bg-[#0A4B43]` bordered card — see the Mid-Execution Amendment above for the full token list):
 
 ```tsx
 export function ProvaSocial() {
   return (
-    <section className="mx-auto max-w-2xl px-6 py-16 text-center">
-      <h2 className="text-3xl font-bold text-slate-900">
-        Muy pronto: las historias de las primeras familias
-      </h2>
-      <p className="mt-6 text-lg text-slate-600">
-        Este espacio se va a llenar pronto con las fotos y las palabras de las primeras familias
-        que ya probaron el Método. Si eres de las primeras, tu historia puede estar aquí.
-      </p>
+    <section className="bg-[#063B35] px-5 py-16 text-center text-[#F6F1E7]">
+      <div className="mx-auto max-w-2xl rounded-[2rem] border border-[#E8A33D]/35 bg-[#0A4B43] p-8 shadow-[0_24px_48px_rgba(0,0,0,0.18)]">
+        <h2 className="text-3xl font-black leading-tight">
+          Muy pronto: las historias de las primeras familias
+        </h2>
+        <p className="mt-6 text-lg leading-8 text-[#F6F1E7]/84">
+          Este espacio se va a llenar pronto con las fotos y las palabras de las primeras
+          familias que ya probaron el Método. Si eres de las primeras, tu historia puede estar
+          aquí.
+        </p>
+      </div>
     </section>
   )
 }
@@ -715,6 +756,8 @@ git commit -m "feat: add ProvaSocial honest placeholder landing page section"
 
 This task requires Tasks 1-7 to be complete and committed first (it imports all three new components and depends on the Task 3 heading rename for its order-test markers).
 
+**Before writing Step 1, re-read the current `web/app/page.test.tsx`** — it was already modified by the external redesign work to fix the Hero/Guarantee collision (see Mid-Execution Amendment above) and to query the Hero and FinalCta CTAs separately by their now-different labels. The version below is written to be consistent with that current state; if it has drifted further, reconcile before proceeding rather than blindly overwriting.
+
 - [ ] **Step 1: Write the failing test**
 
 Replace the full contents of `web/app/page.test.tsx` with:
@@ -729,9 +772,7 @@ describe('Home page', () => {
   it('renders every section and both CTAs point to the same Hotmart URL', () => {
     render(<Page />)
 
-    expect(
-      screen.getByText(/El método que convierte la culpa por el celular de tu hijo/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Convierte la pantalla en su primer invento/i)).toBeInTheDocument()
     expect(
       screen.getByText('¿Por qué a algunos padres les funciona y a otros no?')
     ).toBeInTheDocument()
@@ -745,9 +786,10 @@ describe('Home page', () => {
     expect(screen.getByText('Tal vez estás pensando...')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Garantía de 7 días' })).toBeInTheDocument()
 
-    const ctaLinks = screen.getAllByRole('link', { name: /Quiero el Método ahora/i })
-    expect(ctaLinks).toHaveLength(2)
-    ctaLinks.forEach((link) => expect(link).toHaveAttribute('href', HOTMART_CHECKOUT_URL))
+    const heroCta = screen.getByRole('link', { name: /Quiero empezar hoy/i })
+    const finalCta = screen.getByRole('link', { name: /Quiero el Método ahora/i })
+    expect(heroCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
+    expect(finalCta).toHaveAttribute('href', HOTMART_CHECKOUT_URL)
 
     BONUSES.forEach((bonus) => expect(screen.getAllByText(bonus.name).length).toBeGreaterThan(0))
     FAQS.forEach((faq) => expect(screen.getByText(faq.question)).toBeInTheDocument())
@@ -766,7 +808,7 @@ describe('Home page', () => {
     const text = container.textContent ?? ''
 
     const indices = {
-      hero: text.indexOf('El método que convierte la culpa por el celular de tu hijo'),
+      hero: text.indexOf('Convierte la pantalla en su primer invento'),
       problema: text.indexOf('El problema no siempre'),
       pain: text.indexOf('En casa pasaba lo mismo'),
       paraQuienEs: text.indexOf('¿Qué es De Jugador'),
@@ -794,7 +836,9 @@ describe('Home page', () => {
 
 Note: the `BONUSES.forEach` assertion in the first test changes from `getByText` to `getAllByText(...).length > 0` — with Task 4's `FinalCta` checklist now also rendering every `bonus.name` (as `✅ Bono: <name>`), each bonus name appears twice on the page (once in `Bonuses.tsx`, once in `FinalCta.tsx`'s checklist line), so a single-match `getByText` would throw.
 
-Note: the Guarantee assertions are disambiguated from the Hero's trust line (Task 2 added "Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador" below the Hero CTA), which also contains the substring "Garantía de 7 días". The first test now targets the Guarantee section's `<h2>` specifically via `getByRole('heading', ...)` instead of `getByText`, and the order-test marker uses the Guarantee section's body copy ("Si en los primeros 7 días no lograste hacer el primer proyecto", from `Guarantee.tsx`) instead of the now-ambiguous heading text.
+Note: the Hero's headline marker is `'Convierte la pantalla en su primer invento'` (the external redesign's new headline), not the original spec's Hero copy — the Hero's prose was already rewritten outside this plan's scope and Task 8 does not revert it. Similarly, the two CTAs are queried separately (`'Quiero empezar hoy'` for Hero, `'Quiero el Método ahora'` for FinalCta) since the redesign gave them different labels — the old `getAllByRole(..., { name: /Quiero el Método ahora/i })` with `toHaveLength(2)` no longer holds.
+
+Note: the Guarantee assertions are disambiguated from the Hero's trust line (Task 2 added "Garantía de 7 días incondicional · Sin kit físico · Empieza gratis en el simulador" below the Hero CTA), which also contains the substring "Garantía de 7 días". The first test targets the Guarantee section's `<h2>` specifically via `getByRole('heading', ...)` instead of `getByText`, and the order-test marker uses the Guarantee section's body copy ("Si en los primeros 7 días no lograste hacer el primer proyecto", from `Guarantee.tsx`) instead of the now-ambiguous heading text.
 
 - [ ] **Step 2: Run test to verify it fails**
 
@@ -877,3 +921,5 @@ git commit -m "feat: recompose landing page into 12-section structure"
 **3. Type consistency:** `Module` (`{ name, description }`) and `Bonus` (`{ name, value, description, image }`) interfaces are unchanged throughout — Task 1 only changes data values, Task 4 only reads `bonus.name` and `MODULES.length`, matching the existing `web/lib/config.ts` interfaces exactly. Component export names (`Problema`, `ParaQuienEs`, `ProvaSocial`) are consistent between their creation tasks (5, 6, 7) and their consumption in Task 8.
 
 **One cross-task ripple caught during review:** Task 4 (FinalCta checklist) causes every `bonus.name` to render twice on the full page (once in `Bonuses.tsx`, once in `FinalCta.tsx`). Task 8's rewrite of `app/page.test.tsx` accounts for this by switching `BONUSES.forEach(... getByText ...)` to `getAllByText(...).length > 0` — called out explicitly in Task 8 Step 1 so the implementer doesn't hit a "multiple elements found" error and reach for a copy change instead of a query fix.
+
+**Post-Task-2 amendment (2026-07-13):** Tasks 3-8 above were rewritten after 7 external commits (outside this plan's process) replaced the visual system of all 9 existing sections and the Hero's copy. See the "Mid-Execution Amendment" section after Global Constraints for the full account, the new design tokens, and the two behavioral changes (differing Hero/FinalCta CTA labels; the already-fixed Guarantee/Hero text collision) that later tasks had to account for. All locked spec copy (headings, checklist logic, price sentences, FAQ heading, full Problema/ParaQuienEs/ProvaSocial content) is preserved verbatim; only visual classes and the FinalCta headline (which conflicted with locked copy) were reconciled.
